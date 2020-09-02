@@ -35,32 +35,48 @@ sudo apt install -y python3-matplotlib
 #sudo apt install -y gnuplot
 sudo apt install -y gpaw cp2k quantum-espresso
 
-echo " "
-echo "libxc-4.3.4 install"
-tar zxvf libxc-4.3.4.tar.gz
-cd libxc-4.3.4
-sudo python setup.py install
+if [ -d $HOME/hotcent/libxc-4.3.4 ]; then
+  echo " "
+  echo "skip libxc-4.3.4 installation"
+else
+  echo " "
+  echo "libxc-4.3.4 install"
+  tar zxvf libxc-4.3.4.tar.gz
+  cd libxc-4.3.4
+  sudo python setup.py install
+fi
 
 cd ~/tango
 
-echo " "
-echo "DFTB+ 19.1 install"
-tar xf dftbplus-19.1.executables.x86_64-linux.tar.xz
-tar xf pbc-0-3.tar.xz
-echo "dftb+19.1 environment settings"
-echo ' ' >> ~/.bashrc
-echo '# dftb+19.1' >> ~/.bashrc
-echo 'export DFTB_COMMAND=$HOME/tango/dftbplus-19.1.x86_64-linux/bin/dftb+' >> ~/.bashrc
-echo 'export DFTB_PREFIX=$HOME/tango/pbc-0-3/' >> ~/.bashrc
+if [ -d $HOME/hotcent/dftbplus-17.1.x86_64-linux ]; then
+  echo " "
+  echo "skip DFTB+19.1 installation"
+else
+  echo " "
+  echo "DFTB+ 19.1 install"
+  tar xf dftbplus-19.1.executables.x86_64-linux.tar.xz
+  wget http://www.dftb.org/fileadmin/DFTB/public/slako/pbc/pbc-0-3.tar.xz
+  tar xf pbc-0-3.tar.xz
+  echo "dftb+19.1 environment settings"
+  echo ' ' >> ~/.bashrc
+  echo '# dftb+19.1' >> ~/.bashrc
+  echo 'export DFTB_COMMAND=$HOME/tango/dftbplus-19.1.x86_64-linux/bin/dftb+' >> ~/.bashrc
+  echo 'export DFTB_PREFIX=$HOME/tango/pbc-0-3/' >> ~/.bashrc
+fi
 
-echo " "
-echo "ASE v.3.19.3 install"
-tar zxvf ase-3.19.3.tar.gz
-echo "ASE v.3.19.3 environment settings"
-echo ' ' >> ~/.bashrc
-echo '# ASE v.3.19.3' >> ~/.bashrc
-echo 'export PYTHONPATH=$HOME/tango/ase-3.19.3:$PYTHONPATH' >> ~/.bashrc
-echo 'export PATH=$HOME/tango/ase-3.19.3/bin:$PATH' >> ~/.bashrc
+if [ -d $HOME/hotcent/ase-3.19.3 ]; then
+  echo " "
+  echo "skip ASE v.3.19.3 installation"
+else
+  echo " "
+  echo "ASE v.3.19.3 install"
+  tar zxvf ase-3.19.3.tar.gz
+  echo "ASE v.3.19.3 environment settings"
+  echo ' ' >> ~/.bashrc
+  echo '# ASE v.3.19.3' >> ~/.bashrc
+  echo 'export PYTHONPATH=$HOME/tango/ase-3.19.3:$PYTHONPATH' >> ~/.bashrc
+  echo 'export PATH=$HOME/tango/ase-3.19.3/bin:$PATH' >> ~/.bashrc
+fi
 
 echo " "
 echo "tango install"
