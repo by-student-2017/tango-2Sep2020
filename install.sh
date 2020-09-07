@@ -13,10 +13,10 @@ sudo apt install -y libblas-dev
 sudo apt install -y liblapack-dev
 sudo apt install -y libopenblas-dev
 #sudo apt install -y libarpack2-dev
-#sudo apt install -y libfftw3-dev
+sudo apt install -y libfftw3-dev
 #sudo apt install -y libxc-dev
 #sudo apt install -y git
-#sudo apt install -y wget
+sudo apt install -y wget
 sudo apt install -y make
 sudo apt install -y cmake
 sudo apt install -y ase
@@ -26,14 +26,16 @@ sudo apt install -y python3-distutils
 sudo apt install -y python3-setuptools
 sudo apt install -y python3-numpy
 sudo apt install -y python3-scipy
-#sudo apt install -y python3-f2py
-#sudo apt install -y python3-mpmath
+sudo apt install -y python3-f2py
+sudo apt install -y python3-mpmath
 sudo apt install -y python3-matplotlib
-#sudo apt install -y python3-sympy
+sudo apt install -y python3-sympy
 #sudo apt install -y grace
 #sudo apt install -y jmol
 #sudo apt install -y gnuplot
 sudo apt install -y gpaw cp2k quantum-espresso
+#sudo apt install -y python3-pip
+#pip3 install scipy --upgrade
 
 if [ -d $HOME/hotcent/libxc-4.3.4 ]; then
   echo " "
@@ -43,7 +45,7 @@ else
   echo "libxc-4.3.4 install"
   tar zxvf libxc-4.3.4.tar.gz
   cd libxc-4.3.4
-  sudo python setup.py install
+  sudo python3 setup.py install
 fi
 
 cd ~/tango
