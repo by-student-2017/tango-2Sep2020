@@ -57,6 +57,7 @@ else
   echo " "
   echo "DFTB+ 19.1 install"
   tar xf dftbplus-19.1.executables.x86_64-linux.tar.xz
+  wget https://www.dftb.org/fileadmin/DFTB/public/slako/pbc/pbc-0-3.tar.xz
   tar xf pbc-0-3.tar.xz
   echo "dftb+19.1 environment settings"
   echo ' ' >> ~/.bashrc
