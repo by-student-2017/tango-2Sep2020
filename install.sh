@@ -34,7 +34,9 @@ sudo apt install -y python3-sympy
 #sudo apt install -y jmol
 #sudo apt install -y gnuplot
 sudo apt install -y gpaw cp2k quantum-espresso
-#sudo apt install -y python3-pip
+sudo apt install -y python3-pip
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade scipy
 #pip3 install scipy --upgrade
 
 if [ -d $HOME/hotcent/libxc-4.3.4 ]; then
