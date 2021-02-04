@@ -4,6 +4,9 @@ if [ -e iter000 ]; then
   echo "read iter000 file"
 else
   echo "import *.skf file to iter000"
+  cp generate_Xx_skf.py generate_$1_skf.py
+  sed -i "s/Xx/$1/g" generate_$1_skf.py
+  python3 generate_$1_skf.py
   mkdir iter000
   cp $1-$1_no_repulsion.skf ./iter000/$1-$1_no_repulsion.skf
 fi
@@ -13,15 +16,17 @@ if [ -z "$1" ]; then
 else
   cp master_cp2k_origin.py master_cp2k.py
   cp master_qe_origin.py   master_qe.py
+  cp ga_origin.py   ga.py
 
   sed -i "s/Xx/$1/g" master_cp2k.py
   sed -i "s/Xx/$1/g" master_qe.py
-  
+  sed -i "s/Xx/$1/g" ga.py
+
   LMAM0=("H" "He" "Li" "Be")
   for i in "${LMAM0[@]}";
   do
     if [ $1 == $i ]; then
-      LMAM0=0
+      LMAM=0
     fi
   done
 
@@ -30,7 +35,6 @@ else
   do
     if [ $1 == $i ]; then
       LMAM=1
-      echo "Si",$i
     fi
   done
   
@@ -46,16 +50,16 @@ else
   for i in "${LMAM3[@]}";
   do
     if [ $1 == $i ]; then
-      LMAM=3
+      LMAM=2
     fi
   done
 
   sed -i "s/MAM/$LMAM/g" master_cp2k.py
   sed -i "s/MAM/$LMAM/g" master_qe.py  
+  sed -i "s/MAM/$LMAM/g" ga.py
 
   sed -i "s/Xx/$1/g" cp2k_calc.py
 
-  sed -i "s/Xx/$1/g" ga.py
 fi
 
 if [ -z "$2" ]; then
